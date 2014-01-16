@@ -1,0 +1,31 @@
+alias vi="vim"
+#for giving priority to /usr/local/bin in front of /usr/bin
+export PATH="/usr/local/bin:$PATH"
+
+#enables color in the terminal bash shell export
+CLICOLOR=1
+#sets up the color scheme for list export
+parse_git_branch() {
+	git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
+}
+#sets up the prompt color (currently a green similar to linux terminal)
+export PS1="\[\033[1;32m\]\u@\h\[\033[00m\]:\w\[\033[1;34m\]\$(parse_git_branch)\[\033[00m\]$ "
+#enables color for iTerm
+export TERM=xterm-color
+#sets up proper alias commands when called
+alias ls='ls -G'
+alias ll='ls -hl'
+alias la='ls -hlrta'
+
+export CC=/usr/bin/gcc
+export CXX=/usr/bin/g++
+
+alias tags='ctags -R -f .tags --exclude=.venv'
+
+#history size
+export HISTCONTROL=erasedups
+export HISTSIZE=10000
+shopt -s histappend
+
+
+source ~/.git-completion.bash

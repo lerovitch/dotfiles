@@ -9,3 +9,9 @@ install-vim:
 
 update-vim:
 	git submodule foreach git pull origin master
+
+install-bash:
+	rm ~/.git-completion.bash
+	rm ~/.bash_profile
+	ln -s `pwd`/bash/git-completion.bash ~/.git-completion.bash
+	ln -s `pwd`/bash/bash_profile ~/.bash_profile
