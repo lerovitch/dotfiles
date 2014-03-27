@@ -1,0 +1,27 @@
+ServerAliveInterval 30
+
+Host  perfcdn*
+        IdentityFile /Users/sergisj/.ssh/perfcdn.pub
+        Compression yes
+        CompressionLevel 9
+        VerifyHostKeyDNS no
+        User cdnadmin
+
+Host  pdihub*
+        IdentityFile /Users/sergisj/.ssh/id_rsa
+        Compression yes
+        CompressionLevel 9
+        VerifyHostKeyDNS no
+        User sergisj
+
+Host hpbridge
+        User pdi
+Host 172.23.145.*
+    User userPDI
+
+Host  *
+        IdentityFile /Users/sergisj/.ssh/cdnkey
+        Compression yes
+        CompressionLevel 9
+        VerifyHostKeyDNS no
+        User cdnadmin

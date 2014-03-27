@@ -1,6 +1,6 @@
 alias vi="vim"
 #for giving priority to /usr/local/bin in front of /usr/bin
-export PATH="/usr/local/bin:~/.local/bin:$PATH"
+export PATH="/usr/local/bin:~/.local/bin:/usr/local/sbin:$PATH"
 
 #enables color in the terminal bash shell export
 CLICOLOR=1
