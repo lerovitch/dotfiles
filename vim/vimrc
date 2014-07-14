@@ -21,20 +21,18 @@ syntax on
 if has("gui_running")
   colorscheme solarized
   if has("mac")
-    "set guifont=Monaco:h13
+    set guifont=Monaco:h13
     "set guifont=Source\ Code\ Pro\ for\ Powerline:h13
-    set guifont=Monaco\ for\ Powerline:h13
+    "set guifont=Monaco\ for\ Powerline:h13
     set fuoptions=maxvert,maxhorz
     set background=light
     " does not work properly on os x
     " au GUIEnter * set fullscreen
   else
-    set guifont=Monaco\ for\ Powerline:h13
+    "set guifont=Monaco\ for\ Powerline:h13
     "set guifont=Source\ Code\ Pro\ for\ Powerline:h13
     "set guifont=DejaVu\ Sans\ Mono\ 10
   endif
-else
-  colorscheme solarized
 endif
 
 " Airline
@@ -281,16 +279,6 @@ let g:syntastic_python_flake8_args='--ignore=E121,E128,E711,E301,E261,E241,E124,
 "
 let g:project_use_nerdtree = 1
 set rtp+=~/.vim/bundle/vim-project/
-call project#rc("~/cdn")
+call project#rc("~/git")
 
-Project  'cdn-tracker-commons'
-Project  'cdn-tracker-server'
-Project  'cdn-tracker-worker'
-Project  'cdn-global-tracker'
-Project  'cdn-manager'
-Project  'cdn-qa-framework'
-Project  'cdn-topology'
-Project  'cdn-topology-loader'
-Project  'cdn-origin-conf'
-Project  'cdn-tld-crons'
-Project  'cdn-region-acquirer'
+Project  'src'
