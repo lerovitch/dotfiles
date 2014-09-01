@@ -1,3 +1,6 @@
+source $VIMRUNTIME/mswin.vim
+behave mswin
+
 " No Compatibility. That just sucks
 " " especially annoying on redhat/windows/osx
 set nocompatible
@@ -18,35 +21,37 @@ call pathogen#infect()
 "  in GUI mode we go with fruity and Monaco 13
 "  in CLI mode myterm looks better (fruity is GUI only)
 syntax on
+
 if has("gui_running")
   colorscheme solarized
-  if has("mac")
-    set guifont=Monaco:h13
-    "set guifont=Source\ Code\ Pro\ for\ Powerline:h13
-    "set guifont=Monaco\ for\ Powerline:h13
-    set fuoptions=maxvert,maxhorz
-    set background=light
-    " does not work properly on os x
-    " au GUIEnter * set fullscreen
-  else
-    "set guifont=Monaco\ for\ Powerline:h13
-    "set guifont=Source\ Code\ Pro\ for\ Powerline:h13
-    "set guifont=DejaVu\ Sans\ Mono\ 10
-  endif
+"  if has("mac")
+"    "set guifont=Monaco:h13
+"    set guifont=Source\ Code\ Pro\ for\ Powerline:h13
+"    "set guifont=Monaco\ for\ Powerline:h13
+"    set fuoptions=maxvert,maxhorz
+"    set background=light
+"    " does not work properly on os x
+"    " au GUIEnter * set fullscreen
+"  "else
+"    "set guifont=Source\ Code\ Pro\ for\ Powerline:h13
+"    "set guifont=Monaco\ for\ Powerline:h13
+"    "set guifont=Source\ Code\ Pro\ for\ Powerline:h13
+"    "set guifont=DejaVu\ Sans\ Mono\ 10
+"  endif
 endif
 
 " Airline
 set laststatus=2
 if has("gui_running")
   let g:airline_theme='solarized'
-  let g:airline_powerline_fonts=1
-else
   let g:airline_powerline_fonts=0
+else
+  let g:airline_powerline_fonts=1
 endif
-
-if !exists('g:airline_symbols')
-  let g:airline_symbols = {}
-endif
+"
+"if !exists('g:airline_symbols')
+"  let g:airline_symbols = {}
+"endif
 
 "let g:airline_mode_map = {
 "  \ '__' : '-',
@@ -66,13 +71,15 @@ endif
   "
 " vim-powerline symbols
   " unicode symbols
-let g:airline_left_sep = ''
-let g:airline_right_sep = ''
-let g:airline_symbols.linenr = ''
-let g:airline_symbols.branch = ''
-let g:airline_symbols.paste = ' > - P'
-let g:airline_readonly_symbol   = ''
-let g:airline_symbols.whitespace = 'Îž'
+"if has("mac")
+"	let g:airline_left_sep = ''
+"	let g:airline_right_sep = ''
+"	let g:airline_symbols.linenr = ''
+"	let g:airline_symbols.branch = ''
+"	let g:airline_symbols.paste = ' > - P'
+"	let g:airline_readonly_symbol   = ''
+"	let g:airline_symbols.whitespace = 'Îž'
+"endif
 
 let g:airline#extensions#whitespace#checks = []
 let g:airline_section_y = airline#section#create_right(['%{printf("%s%s",&fenc,&ff!="unix"?":".&ff:"")}'])
@@ -80,8 +87,8 @@ let g:airline_section_z = airline#section#create_right(['%3l:%2c'])
 let g:airline#extensions#hunks#non_zero_only = 1
 let g:airline#extensions#ctrlp#color_template = 'replace'
 let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#left_sep = ''
-let g:airline#extensions#tabline#left_alt_sep = ''
+"let g:airline#extensions#tabline#left_sep = ''
+"let g:airline#extensions#tabline#left_alt_sep = ''
 
 " Move Backup Files to ~/.vim/sessions
 set backupdir=~/.vim/sessions
@@ -177,7 +184,7 @@ nnoremap <leader>S :%s/\s\+$//<cr>:let @/=''<CR>
 " Ack on <leader>a
 nnoremap <leader>a :Ack 
 nnoremap <leader>A :AckFromSearch<CR>
-let g:ackprg="ack -H --nocolor --nogroup --column --ignore-dir=.venv --ignore-dir=bin --ignore-file=is:.tags"
+let g:ackprg="ack -H --nocolor --nogroup --column --ignore-dir=.venv --ignore-dir=bin"
 
 " Toggle line numbers and fold column for easy copying:
 nnoremap <F2> :set nonumber!<CR>:set foldcolumn=0<CR>
@@ -281,4 +288,7 @@ let g:project_use_nerdtree = 1
 set rtp+=~/.vim/bundle/vim-project/
 call project#rc("~/git")
 
-Project  'src'
+Project  'nlp'
+Project  'nlp_refactor'
+
+:nnoremap <silent> <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>

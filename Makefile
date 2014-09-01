@@ -11,11 +11,13 @@ install-vim:
 update-vim:
 	git submodule foreach git pull origin master
 
+install-ubuntu:
+	ln -s `pwd`/ubuntu/terminator/config  ~/.config/terminator/config
+
 install-bash:
 	rm -rf ~/.git-completion.bash
 	rm -rf ~/.bash_profile
-	# ln -s `pwd`/bash/git-completion.bash ~/.git-completion.bash
-	ln -s /usr/local/etc/bash_completion.d/git-completion.bash ~/.git-completion.bash
+	ln -s `pwd`/bash/git-completion.bash ~/.git-completion.bash
 	ln -s `pwd`/bash/bash_profile ~/.bash_profile
 	mkdir -p ~/.ssh
 	rm -rf ~/.ssh/config
