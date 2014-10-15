@@ -13,15 +13,16 @@ update-vim:
 
 install-ubuntu:
 	ln -s `pwd`/ubuntu/terminator/config  ~/.config/terminator/config
+	rm -f ~/.bashrc
+	ln -s `pwd`/bash/bash_profile ~/.bashrc
 
 install-bash:
 	rm -rf ~/.git-completion.bash
-	rm -rf ~/.bash_profile
 	ln -s `pwd`/bash/git-completion.bash ~/.git-completion.bash
-	ln -s `pwd`/bash/bash_profile ~/.bash_profile
-	mkdir -p ~/.ssh
-	rm -rf ~/.ssh/config
-	ln -s `pwd`/ssh/config ~/.ssh/config
+
+install-mac:
 	mkdir -p ~/Library/Preferences
 	rm -rf ~/Library/Preferences/com.googlecode.iterm2.plist
 	ln -s `pwd`/iterm/com.googlecode.iterm2.plist ~/Library/Preferences/com.googlecode.iterm2.plist
+	rm -rf ~/.bash_profile
+	ln -s `pwd`/bash/bash_profile ~/.bash_profile
