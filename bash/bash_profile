@@ -46,7 +46,20 @@ parse_git_branch() {
 	git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
 }
 
-export PS1="\[\033[1;32m\]\u@\h\[\033[00m\]:\w\[\033[1;34m\]\$(parse_git_branch)\[\033[00m\]$ "
+pyenv_env() {
+    if [ "$PWD" != "$MYOLDPWD" ]; then
+        MYOLDPWD="$PWD";
+	PS1_PYENV=`pyenv version | cut -d" " -f1 | grep -v system`
+	if [ -n "$PS1_PYENV" ]
+	then
+		PS1_PYENV="($PS1_PYENV)"
+	fi
+    fi
+}
+
+export PROMPT_COMMAND=pyenv_env
+
+export PS1="\[\$PS1_PYENV\033[1;32m\]\u@\h\[\033[00m\]:\w\[\033[1;34m\]\$(parse_git_branch)\[\033[00m\]$ "
 export TERM=xterm-color
 # set a fancy prompt (non-color, unless we know we "want" color)
 case "$TERM" in
@@ -94,4 +107,4 @@ if ! shopt -oq posix; then
   fi
 fi
 
-source ~/.git-completion.bash
+#source ~/.git-completion.bash
